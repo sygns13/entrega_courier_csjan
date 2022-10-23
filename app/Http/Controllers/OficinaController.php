@@ -21,7 +21,7 @@ class OficinaController extends Controller
     
     public function index1()
     {
-        if(accesoUser([1,2,3])){
+        if(accesoUser([1])){
 
 
             $idtipouser=Auth::user()->tipo_user_id;

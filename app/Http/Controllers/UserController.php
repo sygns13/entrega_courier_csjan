@@ -61,7 +61,7 @@ class UserController extends Controller
 
     public function index2()
     {
-        if(accesoUser([1,2,3,4,5])){
+        if(accesoUser([1,2])){
 
 
             $idtipouser=Auth::user()->tipo_user_id;
@@ -80,7 +80,7 @@ class UserController extends Controller
 
     public function index3()
     {
-        if(accesoUser([1,2,3])){
+        if(accesoUser([1,2])){
 
             $idtipouser=Auth::user()->tipo_user_id;
             $tipouser=Tipouser::find($idtipouser);

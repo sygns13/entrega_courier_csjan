@@ -42,7 +42,7 @@ class PersonaController extends Controller
 
     public function index2()
     {
-        if(accesoUser([1,2,3,4,5])){
+        if(accesoUser([1,2])){
 
 
             $idtipouser=Auth::user()->tipouser_id;
