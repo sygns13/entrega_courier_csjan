@@ -50,8 +50,11 @@ class UserController extends Controller
 
             $permisos = Permiso::orderBy('id')->get();
 
+            $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+            $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
 
-            return view('usuario.index',compact('tipouser','modulo','tipo_users','oficinas','permisos'));
+
+            return view('usuario.index',compact('tipouser','modulo','tipo_users','oficinas','permisos', 'permiso1', 'permiso2'));
         }
         else
         {
@@ -68,9 +71,12 @@ class UserController extends Controller
             $tipouser=Tipouser::find($idtipouser);
             $permisos = Permiso::orderBy('id')->get();
 
+            $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+            $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
+
 
             $modulo="miperfil";
-            return view('miperfil.index',compact('tipouser','modulo','permisos'));
+            return view('miperfil.index',compact('tipouser','modulo','permisos', 'permiso1', 'permiso2'));
         }
         else
         {
@@ -87,8 +93,11 @@ class UserController extends Controller
             $tipo_users=Tipouser::orderBy('id')->where('borrado','0')->where('id','>','1')->where('id','<','5')->get();
             $permisos = Permiso::orderBy('id')->get();
 
+            $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+            $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
+
             $modulo="reporte1";
-            return view('reporte1.index',compact('tipouser','modulo','tipo_users','permisos'));
+            return view('reporte1.index',compact('tipouser','modulo','tipo_users','permisos', 'permiso1', 'permiso2'));
         }
         else
         {

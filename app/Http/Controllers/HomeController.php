@@ -11,6 +11,7 @@ use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Tipouser;
 use App\User;
+use App\UserPermiso;
 use Auth;
 /* 
 use App\Modulo;
@@ -56,8 +57,11 @@ class HomeController extends Controller
 
         $idtipouser=Auth::user()->tipo_user_id;
         $tipouser=Tipouser::find($idtipouser);
+        $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+        $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
+
         $modulo="inicioAdmin";
 
-        return view('inicio.home',compact('tipouser','modulo','iduser'));
+        return view('inicio.home',compact('tipouser','modulo','iduser', 'permiso1', 'permiso2'));
     }
 }

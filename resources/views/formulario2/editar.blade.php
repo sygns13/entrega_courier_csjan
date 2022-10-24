@@ -1,6 +1,99 @@
 <form method="post" v-on:submit.prevent="update(fillobject.id)">
   <div class="box-body" style="font-size: 14px;">
 
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtcantidad_sobresE" class="col-sm-2 control-label">Cantidad de Sobres:</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="txtcantidad_sobresE" name="txtcantidad_sobresE" placeholder="Cantidad"
+            maxlength="20" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.cantidad_sobres" onkeypress="return soloNumeros(event);" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtorigen_sobreE" class="col-sm-2 control-label">Origen del Sobre:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtorigen_sobreE" name="txtorigen_sobreE" placeholder="Origen del Sobre"
+            maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.origen_sobre" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtnumero_documentoE" class="col-sm-2 control-label">Número de Documento:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtnumero_documentoE" name="txtnumero_documentoE" placeholder="Número de Documento"
+            maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.numero_documento" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtexpedienteE" class="col-sm-2 control-label">Expediente:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtexpedienteE" name="txtexpedienteE" placeholder="Expediente"
+            maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.expediente" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txttelefono_origenE" class="col-sm-2 control-label">Teléfono Contacto Origen:<spam style="color:red;">*</spam></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txttelefono_origenE" name="txttelefono_origenE" placeholder="Teléfono Contacto Origen"
+            maxlength="100" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.telefono_origen" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtfecha_ingresoE" class="col-sm-2 control-label">Fecha de Ingreso a logística:<spam style="color:red;">*</spam></label>
+        <div class="col-sm-3">
+          <input type="date" class="form-control" id="txtfecha_ingresoE" name="txtfecha_ingresoE" placeholder="dd/mm/aaaa"
+            maxlength="10" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.fecha_ingreso" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtdependenciaE" class="col-sm-2 control-label">Persona, Cargo, y Organo o Dependencia:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtdependenciaE" name="txtdependenciaE" placeholder="Persona, Cargo, y Organo o Dependencia"
+            maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.dependencia" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtdireccionE" class="col-sm-2 control-label">Dirección:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtdireccionE" name="txtdireccionE" placeholder="Dirección"
+            maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.direccion" disabled>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtprovinciaE" class="col-sm-2 control-label">Provincia o Sede:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtprovinciaE" name="txtprovinciaE" placeholder="Provincia o Sede"
+            maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.provincia" disabled>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
  
 
     <div class="col-md-12" style="padding-top: 15px;">

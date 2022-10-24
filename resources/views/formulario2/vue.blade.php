@@ -247,7 +247,7 @@
             }
 
             this.$nextTick(() => {
-                $('#cbutipo_envio').focus();
+                $('#txtdetalle_envioE').focus();
             });
 
         },

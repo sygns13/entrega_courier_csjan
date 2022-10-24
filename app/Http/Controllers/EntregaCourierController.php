@@ -10,6 +10,7 @@ use App\Tipouser;
 use App\User;
 
 use App\EntregaCourier;
+use App\UserPermiso;
 
 use App\Exports\Reporte2Export;
 use Maatwebsite\Excel\Facades\Excel;
@@ -33,10 +34,12 @@ class EntregaCourierController extends Controller
 
             $idtipouser=Auth::user()->tipo_user_id;
             $tipouser=Tipouser::find($idtipouser);
+            $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+            $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
 
             $modulo="formulario1";
 
-            return view('formulario1.index',compact('tipouser','modulo'));
+            return view('formulario1.index',compact('tipouser','modulo', 'permiso1', 'permiso2'));
         }
         else
         {
@@ -51,10 +54,12 @@ class EntregaCourierController extends Controller
 
             $idtipouser=Auth::user()->tipo_user_id;
             $tipouser=Tipouser::find($idtipouser);
+            $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+            $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
 
             $modulo="formulario2";
 
-            return view('formulario2.index',compact('tipouser','modulo'));
+            return view('formulario2.index',compact('tipouser','modulo', 'permiso1', 'permiso2'));
         }
         else
         {
@@ -69,10 +74,12 @@ class EntregaCourierController extends Controller
 
             $idtipouser=Auth::user()->tipo_user_id;
             $tipouser=Tipouser::find($idtipouser);
+            $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+            $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
 
             $modulo="reporte2";
 
-            return view('reporte2.index',compact('tipouser','modulo'));
+            return view('reporte2.index',compact('tipouser','modulo', 'permiso1', 'permiso2'));
         }
         else
         {
@@ -98,6 +105,10 @@ class EntregaCourierController extends Controller
             $query->orWhere('detalle_envio','like','%'.$buscar.'%');
             $query->orWhere('orden_servicio','like','%'.$buscar.'%');
             });
+
+        if(Auth::user()->tipo_user_id == '2'){
+            $queryZero->where('user_id_registro1', Auth::user()->id)->orWhere('user_id_registro2', Auth::user()->id);
+        }
 
 
         $registros = $queryZero
@@ -232,6 +243,10 @@ class EntregaCourierController extends Controller
             $query->where('user2.name','like','%'.$username2.'%');
         }
 
+        if(Auth::user()->tipo_user_id == '2'){
+            $query->where('entrega_curriers.user_id_registro1', Auth::user()->id)->orWhere('entrega_curriers.user_id_registro2', Auth::user()->id);
+        }
+
         $registros=$query->paginate(50);
 
         return [
@@ -359,6 +374,10 @@ class EntregaCourierController extends Controller
         }
         if($username2 != null && $username2 != ""){
             $query->where('user2.name','like','%'.$username2.'%');
+        }
+
+        if(Auth::user()->tipo_user_id == '2'){
+            $query->where('entrega_curriers.user_id_registro1', Auth::user()->id)->orWhere('entrega_curriers.user_id_registro2', Auth::user()->id);
         }
 
         $registrosimp=$query->get();
@@ -502,6 +521,10 @@ class EntregaCourierController extends Controller
         if($username2 != null && $username2 != ""){
             $query->where('user2.name','like','%'.$username2.'%');
             $usaFiltro = true;
+        }
+
+        if(Auth::user()->tipo_user_id == '2'){
+            $query->where('entrega_curriers.user_id_registro1', Auth::user()->id)->orWhere('entrega_curriers.user_id_registro2', Auth::user()->id);
         }
 
         $registrosimp=$query->get();

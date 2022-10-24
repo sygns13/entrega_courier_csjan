@@ -10,6 +10,7 @@ use App\Tipouser;
 use App\User;
 
 use App\Oficina;
+use App\UserPermiso;
 
 use stdClass;
 use DB;
@@ -26,10 +27,12 @@ class OficinaController extends Controller
 
             $idtipouser=Auth::user()->tipo_user_id;
             $tipouser=Tipouser::find($idtipouser);
+            $permiso1 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '1')->first();
+            $permiso2 = UserPermiso::where('user_id', Auth::user()->id)->where('permiso_id', '2')->first();
 
             $modulo="oficina";
 
-            return view('oficina.index',compact('tipouser','modulo'));
+            return view('oficina.index',compact('tipouser','modulo', 'permiso1', 'permiso2'));
         }
         else
         {

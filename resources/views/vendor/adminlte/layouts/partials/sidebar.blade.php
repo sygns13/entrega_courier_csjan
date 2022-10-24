@@ -70,8 +70,12 @@
             <li class="treeview" v-bind:class="classMenu3">
                 <a href="#"><i class='fa fa-pencil-square-o'></i> <span>Entrega Courier</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
+                    @if($tipouser->id == 1 || ($tipouser->id == 2 && $permiso1 != null))
                     <li><a href="{{URL::to('formulario1')}}"><i class='fa fa-sign-in'></i> Formulario Inicial Form 01</a></li>
+                    @endif
+                    @if($tipouser->id == 1 || ($tipouser->id == 2 && $permiso2 != null))
                     <li><a href="{{URL::to('formulario2')}}"><i class='fa fa-sign-in'></i> Formulario Final Form 02</a></li>
+                    @endif
                 </ul>
             </li>
             @endif
