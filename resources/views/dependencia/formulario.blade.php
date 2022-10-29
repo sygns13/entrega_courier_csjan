@@ -5,10 +5,20 @@
 
       <div class="col-md-12" style="padding-top: 15px;">
         <div class="form-group">
-          <label for="txtnombre" class="col-sm-2 control-label">Nombre de Oficina:<spam style="color:red;">*</spam></label>
+          <label for="txtnombre" class="col-sm-2 control-label">Nombre de Dependencia:<spam style="color:red;">*</spam></label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" id="txtnombre" name="txtnombre" placeholder="Oficina"
+            <input type="text" class="form-control" id="txtnombre" name="txtnombre" placeholder="Dependencia"
               maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="nombre">
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" style="padding-top: 15px;">
+        <div class="form-group">
+          <label for="txtmeta" class="col-sm-2 control-label">Meta de Dependencia:<spam style="color:red;">*</spam></label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" id="txtmeta" name="txtmeta" placeholder="Meta"
+              maxlength="20" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="meta" onkeypress="return soloNumeros(event);">
           </div>
         </div>
       </div>

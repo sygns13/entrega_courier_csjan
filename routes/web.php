@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 
 
     Route::get('oficinas','OficinaController@index1');
+    Route::get('dependencias','DependenciaController@index1');
     Route::get('formulario1','EntregaCourierController@index1');
     Route::get('formulario2','EntregaCourierController@index2');
     Route::get('usuarios','UserController@index1');
@@ -37,10 +38,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('reporte2','EntregaCourierController@index3');
 
     Route::resource('oficinasre','OficinaController');
+    Route::resource('dependenciasre','DependenciaController');
     Route::resource('formulariore','EntregaCourierController');
     Route::resource('usuario','UserController');
 
     Route::get('oficinasre/altabaja/{id}/{var}','OficinaController@altabaja');
+    Route::get('dependenciasre/altabaja/{id}/{var}','DependenciaController@altabaja');
     Route::get('usuario/altabaja/{id}/{var}','UserController@altabaja');
     Route::get('formulariore2/buscar','EntregaCourierController@buscarRegistro');
 

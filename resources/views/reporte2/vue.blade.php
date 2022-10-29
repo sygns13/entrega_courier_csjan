@@ -75,11 +75,14 @@ data:{
    fecha_entregaFin:'',
    username1:'',
    username2:'',
+   dependencia_id:0,
 
 
    mostrartabla:false,
 
    registrosimp:[],
+
+   dependencia: null,
 
 },
 created:function () {
@@ -213,6 +216,7 @@ methods: {
         this.fecha_entregaFin = '';
         this.username1 = '';
         this.username2 = '';
+        this.dependencia_id = 0;
 
         this.mostrartabla=false;
     },
@@ -230,11 +234,12 @@ methods: {
     this.mostrartabla=false;
 
 
-    axios.post(url,{fecha_ingresoIni:this.fecha_ingresoIni, fecha_ingresoFin:this.fecha_ingresoFin, codigo_registro:this.codigo_registro, origen_sobre:this.origen_sobre, expediente:this.expediente, telefono_origen:this.telefono_origen, tipo_envio:this.tipo_envio, detalle_envio:this.detalle_envio, orden_servicio:this.orden_servicio, fecha_entregaIni:this.fecha_entregaIni, fecha_entregaFin:this.fecha_entregaFin, username1:this.username1, username2:this.username2}).then(response=>{
+    axios.post(url,{fecha_ingresoIni:this.fecha_ingresoIni, fecha_ingresoFin:this.fecha_ingresoFin, codigo_registro:this.codigo_registro, origen_sobre:this.origen_sobre, expediente:this.expediente, telefono_origen:this.telefono_origen, tipo_envio:this.tipo_envio, detalle_envio:this.detalle_envio, orden_servicio:this.orden_servicio, fecha_entregaIni:this.fecha_entregaIni, fecha_entregaFin:this.fecha_entregaFin, username1:this.username1, username2:this.username2, dependencia_id:this.dependencia_id}).then(response=>{
 
         this.mostrartabla=true;
         this.registros= response.data.registros.data;
         this.pagination= response.data.pagination;
+        this.dependencia= response.data.dependencia;
 
         this.divloaderNuevo=false;
         this.mostrartabla=true;
@@ -253,11 +258,12 @@ imprimirReporte(){
 
     this.divloaderNuevo=true;
     $("#btncrearReporte").attr('disabled', true);
-    axios.post(url,{fecha_ingresoIni:this.fecha_ingresoIni, fecha_ingresoFin:this.fecha_ingresoFin, codigo_registro:this.codigo_registro, origen_sobre:this.origen_sobre, expediente:this.expediente, telefono_origen:this.telefono_origen, tipo_envio:this.tipo_envio, detalle_envio:this.detalle_envio, orden_servicio:this.orden_servicio, fecha_entregaIni:this.fecha_entregaIni, fecha_entregaFin:this.fecha_entregaFin, username1:this.username1, username2:this.username2}).then(response=>{
+    axios.post(url,{fecha_ingresoIni:this.fecha_ingresoIni, fecha_ingresoFin:this.fecha_ingresoFin, codigo_registro:this.codigo_registro, origen_sobre:this.origen_sobre, expediente:this.expediente, telefono_origen:this.telefono_origen, tipo_envio:this.tipo_envio, detalle_envio:this.detalle_envio, orden_servicio:this.orden_servicio, fecha_entregaIni:this.fecha_entregaIni, fecha_entregaFin:this.fecha_entregaFin, username1:this.username1, username2:this.username2, dependencia_id:this.dependencia_id}).then(response=>{
 
         this.divloaderNuevo=false;
         $("#btncrearReporte").removeAttr("disabled");
        this.registrosimp= response.data.registrosimp;
+       this.dependencia= response.data.dependencia;
 
        this.$nextTick(function () {
 

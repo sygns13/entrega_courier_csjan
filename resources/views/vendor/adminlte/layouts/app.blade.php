@@ -79,6 +79,9 @@ desired effect
 @elseif($modulo=="oficina")
 @include('oficina.vue')
 
+@elseif($modulo=="dependencia")
+@include('dependencia.vue')
+
 {{-- Modulo 2 Formularios Core --}}
 
 @elseif($modulo=="formulario1")

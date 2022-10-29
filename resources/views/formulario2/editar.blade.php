@@ -12,13 +12,35 @@
       </div>
     </div>
 
-    <div class="col-md-12" style="padding-top: 15px;">
+    {{-- <div class="col-md-12" style="padding-top: 15px;">
       <div class="form-group">
         <label for="txtorigen_sobreE" class="col-sm-2 control-label">Origen del Sobre:</label>
         <div class="col-sm-10">
           <input type="text" class="form-control" id="txtorigen_sobreE" name="txtorigen_sobreE" placeholder="Origen del Sobre"
             maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.origen_sobre" disabled>
         </div>
+      </div>
+    </div> --}}
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="cbudependencia_idE" class="col-sm-2 control-label">Origen del Sobre:</label>
+        <div class="col-sm-7">
+          <select class="form-control" id="cbudependencia_idE" name="cbudependencia_idE" v-model="fillobject.dependencia_id" disabled>
+            <option disabled value="0">Seleccione una Dependencia</option>
+            @foreach ($dependencias as $dato)
+              <option value="{{$dato->id}}">{{$dato->nombre}}</option> 
+            @endforeach
+          </select>
+        </div>
+        <label for="txtmetaE" class="col-sm-1 control-label">Meta:</label>
+        <div class="col-sm-2">
+          <input type="text" class="form-control" id="txtmetaE" name="txtmetaE" placeholder="Meta"
+            maxlength="20" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.meta" disabled>
+        </div>
+        @foreach ($dependencias as $dato)
+        <input type="hidden" id="id-metaE-{{$dato->id}}" value="{{$dato->meta}}">
+        @endforeach
       </div>
     </div>
 

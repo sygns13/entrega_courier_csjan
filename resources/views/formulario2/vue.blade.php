@@ -72,6 +72,8 @@
             'ip_registro2': '',
             'fecha_registro2': '',
             'hora_registro2': '',
+            'dependencia_id': 0,
+            'meta': '',
 
             'tipoUpdate': 2,
         },
@@ -237,6 +239,8 @@
             this.fillobject.fecha_entrega=dato.fecha_entrega;
             this.fillobject.orden_servicio=dato.orden_servicio;
             this.fillobject.observacion=dato.observacion;
+            this.fillobject.dependencia_id=dato.dependencia_id;
+            this.fillobject.meta=dato.metaDependencia;
 
             this.divNuevo=false;
             this.divEdit=true;
@@ -279,6 +283,8 @@
                                     'ip_registro2': '',
                                     'fecha_registro2': '',
                                     'hora_registro2': '',
+                                    'dependencia_id': 0,
+                                    'meta': '',
 
                                     'tipoUpdate': 2,};
     
@@ -308,6 +314,8 @@
             data.append('dependencia', this.fillobject.dependencia);
             data.append('direccion', this.fillobject.direccion);
             data.append('ip_registro1', this.fillobject.ip_registro1);
+            data.append('dependencia_id', this.fillobject.dependencia_id);
+            data.append('meta', this.fillobject.meta);
 
             data.append('tipo_envio', this.fillobject.tipo_envio);
             data.append('detalle_envio', this.fillobject.detalle_envio);

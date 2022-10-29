@@ -33,6 +33,23 @@
           </a>
           </div>
 
+          <div class="col-lg-3 col-md-6 col-xs-12">
+            <!-- small box -->
+            <a href="{{URL::to('dependencias')}}" >
+            <div class="small-box bg-green" style="box-shadow: 0px 10px 30px 0px #8d8686;">
+              <div class="inner">
+                <h3 style="font-size: 30px">Dependencias</h3>
+  
+                <p>Gestión de Dependencias</p>
+              </div>
+              <div class="icon" style="top: 7px;">
+               <i class="fa fa-building"></i> 
+              </div>
+              <div  class="small-box-footer" style="height: 37px"><i class="fa fa-arrow-circle-right" style="font-size: 30px"></i></div>
+            </div>
+          </a>
+          </div>
+
         @endif
 
 

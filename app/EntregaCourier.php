@@ -32,6 +32,7 @@ class EntregaCourier extends Model
                             'fecha_registro2',
                             'hora_registro2',
                             'borrado',
+                            'dependencia_id',
                         ];
 	protected $guarded = ['id'];
 }

@@ -58,6 +58,7 @@
                 <a href="#"><i class='fa fa-tasks'></i> <span>Tablas Base</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="{{URL::to('oficinas')}}"><i class='fa fa-sign-in'></i> Gestión de Oficinas</a></li>
+                    <li><a href="{{URL::to('dependencias')}}"><i class='fa fa-sign-in'></i> Gestión de Dependencias</a></li>
                 </ul>
             </li>
             @endif

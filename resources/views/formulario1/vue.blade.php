@@ -72,6 +72,8 @@
             'ip_registro2': '',
             'fecha_registro2': '',
             'hora_registro2': '',
+            'dependencia_id': 0,
+            'meta': '',
 
             'tipoUpdate': 1,
         },
@@ -113,6 +115,8 @@
         ip_registro2: '',
         fecha_registro2: '',
         hora_registro2: '',
+        dependencia_id: 0,
+        meta: '',
 
 
         divloaderNuevo:false,
@@ -258,6 +262,8 @@
             this.ip_registro2 = '';
             this.fecha_registro2 = '';
             this.hora_registro2 = '';
+            this.dependencia_id = 0;
+            this.meta = '';
 
             this.$nextTick(() => {
                 $('#txtcantidad_sobres').focus();
@@ -292,6 +298,8 @@
             data.append('observacion', this.observacion);
             data.append('ip_registro1', this.ip_registro1);
             data.append('ip_registro2', this.ip_registro2);
+            data.append('dependencia_id', this.dependencia_id);
+            data.append('meta', this.meta);
 
 
             const config = { headers: { 'Content-Type': 'multipart/form-data' } };
@@ -369,6 +377,8 @@
             this.fillobject.fecha_entrega=dato.fecha_entrega;
             this.fillobject.orden_servicio=dato.orden_servicio;
             this.fillobject.observacion=dato.observacion;
+            this.fillobject.dependencia_id=dato.dependencia_id;
+            this.fillobject.meta=dato.metaDependencia;
 
             this.divNuevo=false;
             this.divEdit=true;
@@ -407,6 +417,8 @@
                                     'ip_registro2': '',
                                     'fecha_registro2': '',
                                     'hora_registro2': '',
+                                    'dependencia_id': 0,
+                                    'meta': '',
 
                                     'tipoUpdate': 1,};
     
@@ -445,6 +457,8 @@
             data.append('ip_registro2', this.fillobject.ip_registro2);
 
             data.append('tipoUpdate', this.fillobject.tipoUpdate);
+            data.append('dependencia_id', this.fillobject.dependencia_id);
+            data.append('meta', this.fillobject.meta);
 
             data.append('_method', 'PUT');
 
@@ -471,6 +485,25 @@
             }).catch(error=>{
                 this.errors=error.response.data
             })
+        },
+
+        cambioDependencia: function () {
+
+            if(this.dependencia_id != 0){
+                this.meta = $("#id-meta-"+this.dependencia_id).val();
+            }
+            else{
+                this.meta = "";
+            }
+        },
+
+        cambioDependenciaE: function () {
+            if(this.dependencia_id != 0){
+                this.fillobject.meta = $("#id-metaE-"+this.fillobject.dependencia_id).val();
+            }
+            else{
+                this.fillobject.meta = "";
+            }
         },
 }
 });

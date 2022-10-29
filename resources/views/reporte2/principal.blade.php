@@ -36,9 +36,18 @@
 
         <div class="col-md-12" style="padding-top: 10px;">
           <div class="form-group"style="font-size: 12px;">
-            <label for="txtcodigo_registro" class="col-sm-2 control-label">Origen del Sobre:</label>
+            {{-- <label for="txtcodigo_registro" class="col-sm-2 control-label">Origen del Sobre:</label>
             <div class="col-sm-4">
               <input type="text" class="form-control input" id="txtcodigo_registro" name="txtcodigo_registro" placeholder="Todos" maxlength="500"  v-model="codigo_registro" @change="cambiarfiltro">
+            </div> --}}
+            <label for="cbudependencia_id" class="col-sm-2 control-label">Origen del Sobre:</label>
+            <div class="col-sm-4">
+              <select class="form-control" id="cbudependencia_id" name="cbudependencia_id" v-model="dependencia_id">
+                <option disabled value="0">TODAS</option>
+                @foreach ($dependencias as $dato)
+                  <option value="{{$dato->id}}">{{$dato->nombre}}</option> 
+                @endforeach
+              </select>
             </div>
 
             <label for="txtorigen_sobre" class="col-sm-2 control-label">Número de Documento:</label>
@@ -196,8 +205,12 @@
         <h5><b>Código de Único de Registro: @{{codigo_registro}}</b></h5>
       </div> 
 
-      <div class="col-md-6" v-if="origen_sobre.trim().length>0">
+      {{-- <div class="col-md-6" v-if="origen_sobre.trim().length>0">
         <h5 ><b>Origen del Sobre: @{{origen_sobre}}</b></h5>
+      </div>   --}}
+
+      <div class="col-md-6" v-if="dependencia_id != 0">
+        <h5 ><b>Origen del Sobre: @{{dependencia.nombre}}</b></h5>
       </div>  
 
       <div class="col-md-6" v-if="expediente.trim().length>0">
@@ -248,7 +261,8 @@
           <th style="border:1px solid #ddd;padding: 5px; width: 4%;">#</th>
           <th style="border:1px solid #ddd;padding: 5px; width: 7%;">Código Único de Registro</th>
           <th style="border:1px solid #ddd;padding: 5px; width: 7%;">Cantidad de Sobres</th>
-          <th style="border:1px solid #ddd;padding: 5px; width: 8%;">Origen del Sobre</th>
+          <th style="border:1px solid #ddd;padding: 5px; width: 8%;">Origen del Sobre - Dependencia</th>
+          <th style="border:1px solid #ddd;padding: 5px; width: 6%;">Meta de Dependencia</th>
           <th style="border:1px solid #ddd;padding: 5px; width: 8%;">N° de Documento</th>
           <th style="border:1px solid #ddd;padding: 5px; width: 8%;">N° de Expediente</th>
           <th style="border:1px solid #ddd;padding: 5px; width: 6%;">Teléfono Contacto Origen</th>
@@ -266,7 +280,19 @@
           <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">@{{key+pagination.from}}</td>
           <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">@{{ registro.codigo_registro }}</td>
           <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">@{{ registro.cantidad_sobres }}</td>
-          <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">@{{ registro.origen_sobre }}</td>
+          <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">
+            <template v-if="registro.dependencia_id > 0">
+              @{{ registro.nombreDependencia }}
+            </template>
+            <template v-else>
+              @{{ registro.origen_sobre }}
+            </template>
+          </td>
+          <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">
+            <template v-if="registro.dependencia_id > 0">
+              @{{ registro.metaDependencia }}
+            </template>
+          </td>
           <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">@{{ registro.numero_documento }}</td>
           <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">@{{ registro.expediente }}</td>
           <td style="border:1px solid #ddd;font-size: 12px; padding: 5px;">@{{ registro.telefono_origen }}</td>
@@ -368,9 +394,13 @@
             <h5 style="font-size:11px;"><b>Código de Único de Registro: @{{codigo_registro}}</b></h5>
           </div> 
     
-          <div style="width:45%; display:inline-block;" v-if="origen_sobre.trim().length>0">
+          {{-- <div style="width:45%; display:inline-block;" v-if="origen_sobre.trim().length>0">
             <h5 style="font-size:11px;"><b>Origen del Sobre: @{{origen_sobre}}</b></h5>
-          </div>  
+          </div>   --}}
+
+          <div style="width:45%; display:inline-block;" v-if="dependencia_id != 0">
+            <h5 style="font-size:11px;"><b>Origen del Sobre: @{{dependencia.nombre}}</b></h5>
+          </div> 
     
           <div style="width:45%; display:inline-block;" v-if="expediente.trim().length>0">
             <h5 style="font-size:11px;"><b>Expediente: @{{expediente}}</b></h5>
@@ -415,7 +445,8 @@
               <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 4%;">#</th>
               <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 7%;">Código Único de Registro</th>
               <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 7%;">Cantidad de Sobres</th>
-              <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 8%;">Origen del Sobre</th>
+              <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 8%;">Origen del Sobre - Dependencia</th>
+              <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 6%;">Meta de Dependencia</th>
               <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 8%;">N° de Documento</th>
               <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 8%;">N° de Expediente</th>
               <th style="font-size:10px;border:1px solid #000000;padding: 5px; width: 6%;">Teléfono Contacto Origen</th>
@@ -434,7 +465,19 @@
               <td style="font-size:10px;border:1px solid #000000; padding: 2px;">@{{key+1}}</td>
               <td style="font-size:10px;border:1px solid #000000; padding: 2px;">@{{ registro.codigo_registro }}</td>
               <td style="font-size:10px;border:1px solid #000000; padding: 2px;">@{{ registro.cantidad_sobres }}</td>
-              <td style="font-size:10px;border:1px solid #000000; padding: 2px;">@{{ registro.origen_sobre }}</td>
+              <td style="font-size:10px;border:1px solid #000000; padding: 2px;">
+                <template v-if="registro.dependencia_id > 0">
+                  @{{ registro.nombreDependencia }}
+                </template>
+                <template v-else>
+                  @{{ registro.origen_sobre }}
+                </template>
+              </td>
+              <td style="font-size:10px;border:1px solid #000000; padding: 2px;">
+                <template v-if="registro.dependencia_id > 0">
+                  @{{ registro.metaDependencia }}
+                </template>
+              </td>
               <td style="font-size:10px;border:1px solid #000000; padding: 2px;">@{{ registro.numero_documento }}</td>
               <td style="font-size:10px;border:1px solid #000000; padding: 2px;">@{{ registro.expediente }}</td>
               <td style="font-size:10px;border:1px solid #000000; padding: 2px;">@{{ registro.telefono_origen }}</td>

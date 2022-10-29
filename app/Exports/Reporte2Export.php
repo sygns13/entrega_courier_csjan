@@ -31,24 +31,25 @@ class Reporte2Export implements FromArray, WithColumnWidths, WithStyles
             'A'=>'7',
             'B'=>'16',
             'C'=>'13',
-            'D'=>'18',
-            'E'=>'16',
-            'F'=>'14',
-            'G'=>'12',
+            'D'=>'28',
+            'E'=>'18',
+            'F'=>'16',
+            'G'=>'14',
             'H'=>'12',
-            'I'=>'20',
-            'J'=>'20',     
-            'K'=>'12',     
-            'L'=>'13',     
-            'M'=>'15',     
-            'N'=>'16',     
+            'I'=>'12',
+            'J'=>'20',
+            'K'=>'20',     
+            'L'=>'12',     
+            'M'=>'13',     
+            'N'=>'15',     
             'O'=>'16',     
+            'P'=>'16',          
         ];
     }
 
     public function styles(Worksheet $sheet)
     {
-        $sheet->mergeCells('A1:O1');
+        $sheet->mergeCells('A1:P1');
 
         $styleArray = [
             'font' => [
@@ -124,10 +125,10 @@ class Reporte2Export implements FromArray, WithColumnWidths, WithStyles
         $filas = count($this->data);
         $cont = $this->cont;
 
-        $celdaTitles ='A'.strval($cont).':O'.strval($cont);
+        $celdaTitles ='A'.strval($cont).':P'.strval($cont);
 
 
-        $sheet->getStyle('A1:O1')->applyFromArray($styleArray);
+        $sheet->getStyle('A1:P1')->applyFromArray($styleArray);
         $sheet->getStyle($celdaTitles)->applyFromArray($styleArray2);
 
 
@@ -148,6 +149,7 @@ class Reporte2Export implements FromArray, WithColumnWidths, WithStyles
                 $celdaM ='M'.strval((1+intval($i)));
                 $celdaN ='N'.strval((1+intval($i)));
                 $celdaO ='O'.strval((1+intval($i)));
+                $celdaP ='P'.strval((1+intval($i)));
 
                 $sheet->getStyle($celdaA)->applyFromArray($styleArray3);
                 $sheet->getStyle($celdaB)->applyFromArray($styleArray3);
@@ -164,6 +166,7 @@ class Reporte2Export implements FromArray, WithColumnWidths, WithStyles
                 $sheet->getStyle($celdaM)->applyFromArray($styleArray3);
                 $sheet->getStyle($celdaN)->applyFromArray($styleArray3);
                 $sheet->getStyle($celdaO)->applyFromArray($styleArray3);
+                $sheet->getStyle($celdaP)->applyFromArray($styleArray3);
             }
         }
     }

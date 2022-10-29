@@ -8,8 +8,18 @@
       <div class="form-group">
         <label for="txtnombreE" class="col-sm-2 control-label">Nombre:<spam style="color:red;">*</spam></label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" id="txtnombreE" name="txtnombreE" placeholder="Oficina"
+          <input type="text" class="form-control" id="txtnombreE" name="txtnombreE" placeholder="Dependencia"
             maxlength="500" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.nombre">
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" style="padding-top: 15px;">
+      <div class="form-group">
+        <label for="txtmetaE" class="col-sm-2 control-label">Meta de Dependencia:<spam style="color:red;">*</spam></label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="txtmetaE" name="txtmetaE" placeholder="Meta"
+            maxlength="20" @keydown="$event.keyCode === 13 ? $event.preventDefault() : false" v-model="fillobject.meta" onkeypress="return soloNumeros(event);">
         </div>
       </div>
     </div>
